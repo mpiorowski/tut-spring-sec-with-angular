@@ -11,6 +11,7 @@
     <name>oauth2-root</name>
 
     <modules>
+        <module>authserver</module>
         <module>resource</module>
         <module>ui</module>
     </modules>
