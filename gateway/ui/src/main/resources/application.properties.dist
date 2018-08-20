@@ -1,8 +1,0 @@
-spring.redis.host=localhost
-spring.redis.port=6379
-spring.session.store-type=redis
-spring.security.user.password=pass
-spring.security.user.name=user
-management.endpoints.web.exposure.include=*
-
-serverAddress=localhost
