@@ -1,4 +1,4 @@
-package oauth2resource.config;
+package oauth.resource.config;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -11,14 +11,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
-//        .cors().disable()
-//        .httpBasic().disable()
         .authorizeRequests().anyRequest().authenticated();
   }
 
-//  bean used with no zuul implemetion
-//  @Bean
-//  HeaderHttpSessionIdResolver sessionIdResolver() {
-//    return HeaderHttpSessionIdResolver.xAuthToken();
-//  }
 }

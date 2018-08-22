@@ -1,18 +1,14 @@
-package oauth2ui.config;
+package oauth.ui.config;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-@EnableZuulProxy
-@EnableOAuth2Sso
 @Configuration
-@Order(200)
+@EnableOAuth2Sso
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override

@@ -1,4 +1,4 @@
-package oauth2authserver.contoller;
+package oauth.authserver.contoller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

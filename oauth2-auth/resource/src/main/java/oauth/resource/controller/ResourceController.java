@@ -1,8 +1,8 @@
-package oauth2resource.controller;
+package oauth.resource.controller;
 
+import oauth.resource.object.Message;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import oauth2resource.object.Message;
 
 @RestController
 public class ResourceController {

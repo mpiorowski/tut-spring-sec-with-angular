@@ -1,4 +1,4 @@
-package oauth2resource.object;
+package oauth.resource.object;
 
 import java.util.UUID;
 

@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>oauth2-root</name>
+    <name>oauth-root</name>
 
     <modules>
         <module>authserver</module>
