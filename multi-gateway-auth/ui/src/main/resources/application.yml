@@ -1,10 +1,2 @@
-spring:
-  security:
-    user:
-      password: pass
-zuul:
-  routes:
-    resource:
-      path: /resource/**
-      url: http://127.0.0.1:9000
-  sensitive-headers:
+server:
+  port: 8081
