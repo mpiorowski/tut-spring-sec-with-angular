@@ -1,4 +1,4 @@
-package tokenresource.object;
+package oauth2resource.object;
 
 import java.util.UUID;
 

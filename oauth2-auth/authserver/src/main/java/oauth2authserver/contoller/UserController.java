@@ -1,4 +1,4 @@
-package tokenui.controller;
+package oauth2authserver.contoller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-public class UserController {
+public class UserController
+{
 
   @RequestMapping("/user")
   public Principal user(Principal user) {
     return user;
   }
-
 }

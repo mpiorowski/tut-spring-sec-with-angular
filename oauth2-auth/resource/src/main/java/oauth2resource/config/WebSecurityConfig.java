@@ -1,4 +1,4 @@
-package tokenresource.config;
+package oauth2resource.config;
 
 
 import org.springframework.context.annotation.Configuration;

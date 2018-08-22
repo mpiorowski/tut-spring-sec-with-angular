@@ -1,4 +1,4 @@
-package ssa.oauth2.auth.oauth2authserver;
+package oauth2authserverr;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
