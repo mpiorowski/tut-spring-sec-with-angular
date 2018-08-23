@@ -1,11 +1,25 @@
 zuul:
-  sensitive-headers:
   routes:
     ui:
+      path: /ui/*
       url: http://localhost:8081
     resource:
       url: http://localhost:9000
+    sensitive-headers:
+
 spring:
   security:
     user:
       password: pass
+  session:
+    store-type: redis
+
+
+management:
+  endpoint:
+    httptrace:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: httptrace
