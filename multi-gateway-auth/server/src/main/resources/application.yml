@@ -1,0 +1,11 @@
+zuul:
+  sensitive-headers:
+  routes:
+    ui:
+      url: http://localhost:8081
+    resource:
+      url: http://localhost:9000
+spring:
+  security:
+    user:
+      password: pass
