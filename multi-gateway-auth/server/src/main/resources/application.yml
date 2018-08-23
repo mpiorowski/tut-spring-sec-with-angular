@@ -4,6 +4,7 @@ zuul:
       path: /ui/*
       url: http://localhost:8081
     resource:
+      path: /resource/**
       url: http://localhost:9000
     sensitive-headers:
 
