@@ -1,38 +1,35 @@
-<nav class="navbar navbar-default">
-  <div class="container">
-    <a class="brand" href='#/'>Home</a>
-    <div class="navbar-right">
-      <a class="btn btn-primary" href="#/login">login</a> <a
-      class="btn btn-primary" [hidden]="!authenticated" href=""
-      (click)="logout()">logout</a>
-      <p [hidden]="!authenticated">
-        Signed in as <a href="#/" class="navbar-link">{{user}}</a>
-      </p>
+<div class="container" [hidden]="!authenticated">
+  <a href="/ui/" class="btn btn-primary">UI</a>
+</div>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/ui/">UI</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a (click)="login()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      <li><a (click)="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
   </div>
 </nav>
-<div class="alert alert-danger" [hidden]="!error">There was a
-  problem logging in. Please try again.
-</div>
+
+
 <div class="container" [hidden]="authenticated">
-  <form role="form" (submit)="login()">
+  <form (submit)="login()" role="form">
     <div class="form-group">
-      <label for="username">Username:</label> <input type="text"
-                                                     class="form-control" id="username" name="username"
-                                                     [(ngModel)]="credentials.username"/>
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" class="form-control" [ngModel]="credentials.username">
     </div>
     <div class="form-group">
-      <label for="password">Password:</label> <input type="password"
-                                                     class="form-control" id="password" name="password"
-                                                     [(ngModel)]="credentials.password"/>
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password" class="form-control" [ngModel]="credentials.password">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Login</button>
   </form>
-</div>
-<div class="container" [hidden]="!authenticated">
-  <a class="btn btn-primary" href="/ui/">Go To User Interface</a>
-</div>
-<br/>
-<div class="container" [hidden]="!authenticated || !admin">
-  <a class="btn btn-primary" href="/admin/">Go To Admin Interface</a>
 </div>

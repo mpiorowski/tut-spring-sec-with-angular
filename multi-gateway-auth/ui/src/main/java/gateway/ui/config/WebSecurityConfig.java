@@ -10,6 +10,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
+    httpSecurity
+//        .httpBasic()
+//        .and()
+      .authorizeRequests()
+      .anyRequest()
+      .authenticated()
+      .and()
+      .sessionManagement()
+      .sessionCreationPolicy(SessionCreationPolicy.NEVER);
   }
 }
