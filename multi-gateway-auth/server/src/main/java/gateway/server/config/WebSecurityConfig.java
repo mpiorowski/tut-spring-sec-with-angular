@@ -13,32 +13,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
-      .httpBasic()
-      .and()
-      .sessionManagement()
-      .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-      .and()
-      .authorizeRequests()
-      .antMatchers("/index.html", "/")
-      .permitAll()
-      .anyRequest()
-      .authenticated()
-      .and()
-      .csrf()
-      .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+        .httpBasic()
+        .and()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+        .and()
+        .authorizeRequests()
+        .antMatchers("/index.html", "/")
+        .permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .csrf()
+        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
   }
 
   @Override
   public void configure(WebSecurity webSecurity) throws Exception {
     webSecurity
-      .ignoring()
-      .antMatchers(
-        "/resources/**",
-        "/static/**",
-        "/css/**",
-        "/js/**",
-        "/images/**",
-        "/*.bundle.*",
-        "/favicon.ico");
+        .ignoring()
+        .antMatchers(
+            "/resources/**",
+            "/static/**",
+            "/css/**",
+            "/js/**",
+            "/images/**",
+            "/*.bundle.*",
+            "/favicon.ico");
   }
 }

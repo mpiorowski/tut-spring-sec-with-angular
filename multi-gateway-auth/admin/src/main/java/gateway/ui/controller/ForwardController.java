@@ -1,4 +1,4 @@
-package gateway.server.controller;
+package gateway.ui.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,4 +11,5 @@ public class ForwardController {
     // Forward to home page so that route is preserved.
     return "forward:/";
   }
+
 }

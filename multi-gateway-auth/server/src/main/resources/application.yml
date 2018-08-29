@@ -4,10 +4,15 @@ zuul:
       path: /ui/*
       url: http://localhost:8081
       sensitive-headers:
+    admin:
+      path: /admin/**
+      url: http://localhost:8082
+      sensitive-headers:
     resource:
       path: /resource/**
       url: http://localhost:9000
       sensitive-headers:
+
 
 spring:
   security:

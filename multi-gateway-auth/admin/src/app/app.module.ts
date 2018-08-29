@@ -1,13 +1,17 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
 import {Injectable, NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-
-import {AppComponent} from './app.component';
 import {RouterModule, Routes} from '@angular/router';
+import {AppService} from './app.service';
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
-  // { path: 'ui', redirectTo: '/uii' }
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
+  {path: 'home', component: HomeComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @Injectable()
@@ -23,15 +27,17 @@ export class XhrInterceptor implements HttpInterceptor {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    RouterModule.forRoot(routes)
+    FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
+  providers: [AppService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
