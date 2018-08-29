@@ -1,4 +1,4 @@
-package gateway.ui.config;
+package gateway.admin.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

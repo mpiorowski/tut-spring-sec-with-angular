@@ -1,11 +1,11 @@
-package gateway.ui;
+package gateway.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GatewayUiApp {
+public class GatewayAdminApp {
   public static void main(String[] args) {
-    SpringApplication.run(GatewayUiApp.class);
+    SpringApplication.run(GatewayAdminApp.class);
   }
 }

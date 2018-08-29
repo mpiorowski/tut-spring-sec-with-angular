@@ -13,6 +13,8 @@
     <modules>
         <module>resource</module>
         <module>ui</module>
+        <module>server</module>
+        <module>admin</module>
     </modules>
 
     <properties>
