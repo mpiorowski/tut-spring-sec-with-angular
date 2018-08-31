@@ -11,7 +11,7 @@ export class HomeComponent {
   greeting = {};
 
   constructor(private app: AppService, private http: HttpClient) {
-    http.get('resource').subscribe(data => this.greeting = data);
+    http.get('/resource').subscribe(data => this.greeting = data);
   }
 
   // constructor used when zuul is not implemented

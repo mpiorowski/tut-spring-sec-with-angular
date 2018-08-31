@@ -18,7 +18,7 @@ export class WriteComponent implements OnInit {
   }
 
   getGreeting() {
-    this.http.get('http://localhost:9000').subscribe(data => this.greeting = data);
+    this.http.get('/resource').subscribe(data => this.greeting = data);
   }
 
   update() {
