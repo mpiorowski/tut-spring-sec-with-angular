@@ -1,17 +1,23 @@
 package gateway.server.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @RestController
 public class UserController {
 
   @RequestMapping("/user")
-  public Map<String, String> user(Principal user) {
-    return Collections.singletonMap("name", user.getName());
+  public Map<String, Object> user(Principal user) {
+    Map<String, Object> map = new LinkedHashMap<>();
+    map.put("name", user.getName());
+    map.put("roles", AuthorityUtils.authorityListToSet(((Authentication) user).getAuthorities()));
+
+    return map;
   }
 }

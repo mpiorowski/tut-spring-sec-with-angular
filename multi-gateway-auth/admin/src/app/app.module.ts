@@ -1,22 +1,26 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {Injectable, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {Injectable, NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {RouterModule, Routes} from '@angular/router';
-import {AppService} from './app.service';
-import {HomeComponent} from './home/home.component';
-import {LoginComponent} from './login/login.component';
+
 import {AppComponent} from './app.component';
+import {RouterModule, Routes} from '@angular/router';
+import {ReadComponent} from './read/read.component';
+import {WriteComponent} from './write/write.component';
+import {ChangesComponent} from './changes/changes.component';
+import {UnauthenticatedComponent} from './unauthenticated/unauthenticated.component';
+import {AppService} from "./app.service";
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent}
+  {path: '', pathMatch: 'full', redirectTo: 'read'},
+  {path: 'read', component: ReadComponent},
+  {path: 'write', component: WriteComponent},
+  {path: 'unauthenticated', component: UnauthenticatedComponent},
+  {path: 'changes', component: ChangesComponent},
 ];
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
-
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const xhr = req.clone({
       headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
@@ -28,14 +32,16 @@ export class XhrInterceptor implements HttpInterceptor {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    LoginComponent
+    ReadComponent,
+    WriteComponent,
+    ChangesComponent,
+    UnauthenticatedComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [AppService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]

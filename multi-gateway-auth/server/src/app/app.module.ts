@@ -5,9 +5,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpR
 
 import {AppComponent} from './app.component';
 import {RouterModule, Routes} from '@angular/router';
+import {AppService} from "./app.service";
 
 const routes: Routes = [
-  // { path: 'ui', redirectTo: '/uii' }
 ];
 
 @Injectable()
@@ -31,7 +31,7 @@ export class XhrInterceptor implements HttpInterceptor {
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
+  providers: [AppService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

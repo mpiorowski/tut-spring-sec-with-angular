@@ -10,15 +10,17 @@ import 'rxjs/add/operator/finally';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  user: {};
+
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-    this.app.authenticate(undefined, undefined);
+    this.app.authenticate(response => {
+      this.user = response;
+    })
   }
 
   logout() {
-    this.http.post('logout', {}).finally(() => {
-      this.app.authenticated = false;
-      this.router.navigateByUrl('/login');
-    }).subscribe();
+    this.app.logout();
   }
 
 }

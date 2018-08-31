@@ -3,6 +3,7 @@ zuul:
     ui:
       path: /ui/*
       url: http://localhost:8081
+      #      stripPrefix: false
       sensitive-headers:
     admin:
       path: /admin/**

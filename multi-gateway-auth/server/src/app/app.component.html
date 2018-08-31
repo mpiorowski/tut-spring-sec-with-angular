@@ -1,19 +1,27 @@
-<nav class="navbar navbar-inverse" [hidden]="!authenticated">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="/ui/">UI</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a (click)="login()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
-      <li><a (click)="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
+<!--<nav class="navbar navbar-inverse" [hidden]="!authenticated">-->
+<!--<div class="container-fluid">-->
+<!--<div class="navbar-header">-->
+<!--<a class="navbar-brand" href="#">WebSiteName</a>-->
+<!--</div>-->
+<!--<ul class="nav navbar-nav">-->
+<!--<li class="active"><a href="/">Home</a></li>-->
+<!--<li><a href="/ui/">UI</a></li>-->
+<!--</ul>-->
+<!--<ul class="nav navbar-nav navbar-right">-->
+<!--<li><a (click)="login()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+<!--<li><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Logout</a></li>-->
+<!--<li><a (click)="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+
+<!--<div class="container" [hidden]="!authenticated">-->
+<!--<a class="btn btn-primary" href="/ui/">Go To User Interface</a>-->
+<!--</div>-->
+<!--<br />-->
+<!--<div class="container" [hidden]="!authenticated || !app.admin">-->
+<!--<a class="btn btn-primary" href="/admin/">Go To Admin Interface</a>-->
+<!--</div>-->
 
 
 <div class="container" [hidden]="authenticated">

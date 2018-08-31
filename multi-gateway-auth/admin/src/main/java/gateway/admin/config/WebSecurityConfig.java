@@ -11,9 +11,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
-//        .httpBasic()
-//        .and()
       .authorizeRequests()
+      .antMatchers("/admin/**")
+      .hasRole("ADMIN")
       .anyRequest()
       .authenticated()
       .and()

@@ -1,10 +1,25 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/admin/">MyPage</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/ui/">UI</a></li>
+      <li><a (click)="message()">Message</a></li>
+      <li><a (click)="changes()">Changes</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <p class="navbar-text" [hidden]="!app.authenticated">
+        Signed in as <a href="#/" class="navbar-link">{{user.name}}</a>
+      </p>
+      <li><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      <!--<li><a (click)="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+      <!--<li><a (click)="login()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+    </ul>
+  </div>
+</nav>
+
 <div class="container">
-  <ul class="nav nav-pills">
-    <li><a routerLinkActive="active" routerLink="/home">Home</a></li>
-    <li><a routerLinkActive="active" routerLink="/login">Login</a></li>
-    <li><a (click)="logout()">Logout</a></li>
-  </ul>
-</div>
-<div class="container">
+  <h1>Admin</h1>
   <router-outlet></router-outlet>
 </div>

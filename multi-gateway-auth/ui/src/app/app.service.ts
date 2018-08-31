@@ -1,29 +1,53 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AppService {
 
   authenticated = false;
+  admin = false;
+  writer = false;
+  error = '';
+
+  data = {};
 
   constructor(private http: HttpClient) {
   }
 
-  authenticate(credentials, callback) {
+  authenticate(callback) {
+    this.http.get('/user').subscribe(data => {
+      this.authenticated = data && data['name'];
+      this.writer = this.authenticated && data['roles'] && data['roles'].indexOf('ROLE_WRITER') > 0;
+      this.data = data;
 
-    const headers = new HttpHeaders(credentials ? {
-      authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-    } : {});
-
-    this.http.get('user', {headers: headers}).subscribe(response => {
-      if (response['name']) {
-        this.authenticated = true;
-      } else {
-        this.authenticated = false;
+      if (callback) {
+        callback(data)
       }
-      return callback && callback();
-    });
+    }, error => {
+      if (error.status === 0) {
+        this.error = 'No connection. Verify application is running.';
+      } else if (error.status === 401) {
+        this.error = 'Unauthorized.';
+      } else if (error.status === 403) {
+        this.error = 'Forbidden.';
+      } else {
+        this.error = 'Unknown.';
+      }
+      this.authenticated = false;
+      this.writer = false;
+      // }
+      // , () => {
+      //   callback(this.data);
+    })
+  }
 
+  logout() {
+    this.http.post('../logout', {}).subscribe(() => {
+        this.authenticated = false;
+        this.admin = false;
+        window.location.href = "/";
+      }
+    )
   }
 
 }
