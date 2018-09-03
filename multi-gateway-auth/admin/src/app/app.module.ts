@@ -10,6 +10,7 @@ import {WriteComponent} from './write/write.component';
 import {ChangesComponent} from './changes/changes.component';
 import {UnauthenticatedComponent} from './unauthenticated/unauthenticated.component';
 import {AppService} from "./app.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'read'},
@@ -41,7 +42,8 @@ export class XhrInterceptor implements HttpInterceptor {
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
   providers: [AppService, {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true}],
   bootstrap: [AppComponent]
