@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {AppService} from "../app.service";
 
 @Component({
   selector: 'app-unauthenticated',
@@ -7,7 +8,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class UnauthenticatedComponent implements OnInit {
 
-  constructor() {
+  error: string;
+
+  constructor(private app: AppService) {
+    this.error = this.app.error;
   }
 
   ngOnInit() {

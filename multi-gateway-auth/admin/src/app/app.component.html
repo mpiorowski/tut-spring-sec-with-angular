@@ -3,18 +3,20 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="/admin/">MyPage</a>
     </div>
+
     <ul class="nav navbar-nav">
-      <li><a href="/ui/">UI</a></li>
-      <li><a (click)="message()">Message</a></li>
-      <li><a (click)="changes()">Changes</a></li>
+      <li *ngFor="let subModule of subModules"
+          (click)="select(subModule)"
+          [ngClass]="{active: isActive(subModule)}">
+        <a>{{subModule.name}}</a>
+      </li>
     </ul>
+
     <ul class="nav navbar-nav navbar-right">
       <p class="navbar-text" [hidden]="!app.authenticated">
         Signed in as <a href="#/" class="navbar-link">{{user.name}}</a>
       </p>
       <li><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
-      <!--<li><a (click)="login()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-      <!--<li><a (click)="login()"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
     </ul>
   </div>
 </nav>
