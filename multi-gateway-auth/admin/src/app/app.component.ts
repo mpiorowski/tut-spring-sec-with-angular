@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from "@angular/router";
 import {AppService} from "./app.service";
@@ -10,21 +10,27 @@ import {fadeAnimation} from "./animation/animation.fade";
   styleUrls: ['./app.component.scss'],
   animations: [fadeAnimation]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  user: {};
-
+  user = {name: ""};
   subModules = [
     {name: "UI", href: "/ui/"},
     {name: "writer", component: "write"},
     {name: "reader", component: "read"},
   ];
   selected: any;
+  dataa: any;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
+
+  }
+
+  ngOnInit() {
+
     this.app.authenticate(response => {
       this.user = response;
     })
+
   }
 
   isActive(subModule) {

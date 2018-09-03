@@ -8,7 +8,6 @@ export class AppService {
   admin = false;
   writer = false;
   error = '';
-
   data = {};
 
   constructor(private http: HttpClient) {
