@@ -8,36 +8,34 @@ export class AppService {
   admin = false;
   writer = false;
   error = '';
-  data = {};
+  user: Object = {name: ''};
+  loading = true;
 
   constructor(private http: HttpClient) {
   }
 
-  authenticate(callback) {
-    this.http.get('/user').subscribe(data => {
-      this.authenticated = data && data['name'];
-      this.writer = this.authenticated && data['roles'] && data['roles'].indexOf('ROLE_WRITER') > 0;
-      this.data = data;
-
-      if (callback) {
-        callback(data)
-      }
-    }, error => {
-      if (error.status === 0) {
-        this.error = 'No connection. Verify application is running.';
-      } else if (error.status === 401) {
-        this.error = 'Unauthorized.';
-      } else if (error.status === 403) {
-        this.error = 'Forbidden.';
-      } else {
-        this.error = 'Unknown.';
-      }
-      this.authenticated = false;
-      this.writer = false;
-      // }
-      // , () => {
-      //   callback(this.data);
-    })
+  authenticate() {
+    return new Promise((resolve, reject) => {
+      this.http.get('/user').toPromise().then(user => {
+        this.authenticated = user && user['name'];
+        this.writer = this.authenticated && user['roles'] && user['roles'].indexOf('ROLE_WRITER') > 0;
+        this.user = user;
+        resolve();
+      }, error => {
+        if (error.status === 0) {
+          this.error = 'No connection. Verify application is running.';
+        } else if (error.status === 401) {
+          this.error = 'Unauthorized.';
+        } else if (error.status === 403) {
+          this.error = 'Forbidden.';
+        } else {
+          this.error = 'Unknown.';
+        }
+        this.authenticated = false;
+        this.writer = false;
+        reject();
+      })
+    });
   }
 
   logout() {

@@ -11,12 +11,13 @@ import {ChangesComponent} from './changes/changes.component';
 import {UnauthenticatedComponent} from './unauthenticated/unauthenticated.component';
 import {AppService} from "./app.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {Resolver} from "./resolver";
+import {AuthResolver} from "./resolver/authResolver";
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'read', resolve: {message: Resolver}},
+  {path: '', component: HomeComponent},
   {path: 'read', component: ReadComponent},
-  {path: 'write', component: WriteComponent, resolve: {message: Resolver}},
+  {path: 'write', component: WriteComponent},
   {path: 'unauthenticated', component: UnauthenticatedComponent},
   {path: 'changes', component: ChangesComponent},
 ];
@@ -37,7 +38,8 @@ export class XhrInterceptor implements HttpInterceptor {
     ReadComponent,
     WriteComponent,
     ChangesComponent,
-    UnauthenticatedComponent
+    UnauthenticatedComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ export class XhrInterceptor implements HttpInterceptor {
   providers: [
     AppService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
-    Resolver
+    AuthResolver
   ],
   bootstrap: [AppComponent]
 })

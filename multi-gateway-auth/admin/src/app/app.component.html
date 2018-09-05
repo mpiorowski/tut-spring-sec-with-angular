@@ -14,14 +14,17 @@
 
     <ul class="nav navbar-nav navbar-right">
       <p class="navbar-text" [hidden]="!app.authenticated">
-        Signed in as <a href="#/" class="navbar-link">{{user.name}}</a>
+        Signed in as <a href="#/" class="navbar-link">{{app.user.name}}</a>
       </p>
       <li><a (click)="logout()"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
 
-<div class="container">
+<div class="text-center">
+  <p class="lead" *ngIf="app.loading">Loading...</p>
+</div>
+<div class="container" *ngIf="!app.loading">
   <main [@fadeAnimation]="getRouterOutletState(o)">
     <router-outlet #o="outlet"></router-outlet>
   </main>

@@ -9,6 +9,7 @@ import {HttpClient} from "@angular/common/http";
 export class ReadComponent implements OnInit {
 
   greeting = {};
+  data: any;
 
   constructor(private http: HttpClient) {
     this.getGreeting();

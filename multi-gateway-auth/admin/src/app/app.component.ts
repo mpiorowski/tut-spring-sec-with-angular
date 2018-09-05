@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from "@angular/router";
 import {AppService} from "./app.service";
 import {fadeAnimation} from "./animation/animation.fade";
+import {MODULES} from "./app.modules";
 
 @Component({
   selector: 'app-root',
@@ -12,25 +13,17 @@ import {fadeAnimation} from "./animation/animation.fade";
 })
 export class AppComponent implements OnInit {
 
-  user = {name: ""};
-  subModules = [
-    {name: "UI", href: "/ui/"},
-    {name: "writer", component: "write"},
-    {name: "reader", component: "read"},
-  ];
+  subModules = MODULES;
   selected: any;
-  dataa: any;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-
+    this.app.authenticate().then(() => {
+      this.app.loading = false;
+    }, () => {
+    })
   }
 
   ngOnInit() {
-
-    this.app.authenticate(response => {
-      this.user = response;
-    })
-
   }
 
   isActive(subModule) {

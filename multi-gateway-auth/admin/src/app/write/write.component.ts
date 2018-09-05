@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-write',
@@ -10,14 +9,12 @@ import {ActivatedRoute} from "@angular/router";
 export class WriteComponent implements OnInit {
 
   greeting = {};
-  dataa: any;
 
-  constructor(private http: HttpClient, private activatedRouter: ActivatedRoute) {
+  constructor(private http: HttpClient) {
     this.getGreeting();
   }
 
   ngOnInit() {
-    this.dataa = this.activatedRouter.snapshot.data;
   }
 
   getGreeting() {
