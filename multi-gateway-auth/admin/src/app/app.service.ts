@@ -5,7 +5,6 @@ import {HttpClient} from "@angular/common/http";
 export class AppService {
 
   authenticated = false;
-  admin = false;
   writer = false;
   error = '';
   user: Object = {name: ''};
@@ -20,7 +19,14 @@ export class AppService {
         this.authenticated = user && user['name'];
         this.writer = this.authenticated && user['roles'] && user['roles'].indexOf('ROLE_WRITER') > 0;
         this.user = user;
+
+        //FOR TESTING - http rejected
+        // this.authenticated = false;
+        // this.writer = false;
+        // reject();
+
         resolve();
+
       }, error => {
         if (error.status === 0) {
           this.error = 'No connection. Verify application is running.';
@@ -41,7 +47,6 @@ export class AppService {
   logout() {
     this.http.post('/logout', {}).subscribe(() => {
         this.authenticated = false;
-        this.admin = false;
         window.location.href = "/";
       }
     )

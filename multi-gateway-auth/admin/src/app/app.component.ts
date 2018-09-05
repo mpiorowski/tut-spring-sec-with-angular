@@ -17,13 +17,16 @@ export class AppComponent implements OnInit {
   selected: any;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-    this.app.authenticate().then(() => {
-      this.app.loading = false;
-    }, () => {
-    })
+
   }
 
   ngOnInit() {
+    this.app.authenticate().then(() => {
+      this.app.loading = false;
+    }, () => {
+      this.app.loading = false;
+      this.router.navigate(['/unauthenticated']);
+    })
   }
 
   isActive(subModule) {
