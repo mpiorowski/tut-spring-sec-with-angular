@@ -10,7 +10,7 @@ import {AuthGuard} from "../guard/auth.guard";
 })
 export class UnauthenticatedComponent implements OnInit {
 
-  error: any;
+  error: any = "";
 
   constructor(private app: AppService, private guard: AuthGuard, private router: Router) {
     if (this.guard.error) {

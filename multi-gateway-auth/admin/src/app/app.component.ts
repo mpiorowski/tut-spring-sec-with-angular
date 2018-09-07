@@ -18,12 +18,12 @@ export class AppComponent implements OnInit {
   loading = false;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-    // this.app.authenticate().then(() => {
-    //   this.loading = false;
-    // }, () => {
-    //   this.loading = false;
-    //   this.router.navigate(['/unauthenticated']);
-    // })
+    this.app.authenticate().then(() => {
+      this.loading = false;
+    }, () => {
+      this.loading = false;
+      this.router.navigate(['/unauthenticated']);
+    })
   }
 
   ngOnInit() {
