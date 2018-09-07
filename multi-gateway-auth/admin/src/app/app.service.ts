@@ -8,7 +8,6 @@ export class AppService {
   writer = false;
   error = '';
   user: Object = {name: ''};
-  loading = true;
 
   constructor(private http: HttpClient) {
   }
@@ -25,7 +24,7 @@ export class AppService {
         // this.writer = false;
         // reject();
 
-        resolve();
+        resolve(true);
 
       }, error => {
         if (error.status === 0) {

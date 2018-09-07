@@ -15,23 +15,31 @@ export class AppComponent implements OnInit {
 
   subModules = MODULES;
   selected: any;
+  loading = false;
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-
+    // this.app.authenticate().then(() => {
+    //   this.loading = false;
+    // }, () => {
+    //   this.loading = false;
+    //   this.router.navigate(['/unauthenticated']);
+    // })
   }
 
   ngOnInit() {
-    this.app.authenticate().then(() => {
-      this.app.loading = false;
-    }, () => {
-      this.app.loading = false;
-      this.router.navigate(['/unauthenticated']);
-    })
   }
 
   isActive(subModule) {
     return this.selected === subModule;
   };
+
+  home() {
+    if (!this.app.authenticated) {
+      this.router.navigate(['/unauthenticated']);
+    } else {
+      this.router.navigate(['/']);
+    }
+  }
 
   select(subModule) {
     this.selected = subModule;

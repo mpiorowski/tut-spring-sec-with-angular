@@ -13,11 +13,18 @@ import {AppService} from "./app.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AuthResolver} from "./resolver/authResolver";
 import {HomeComponent} from './home/home.component';
+import {AuthGuard} from "./guard/auth.guard";
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'read', component: ReadComponent},
-  {path: 'write', component: WriteComponent},
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'read', component: ReadComponent},
+      {path: 'write', component: WriteComponent}
+    ]
+  },
   {path: 'unauthenticated', component: UnauthenticatedComponent},
   {path: 'changes', component: ChangesComponent},
 ];
@@ -51,7 +58,8 @@ export class XhrInterceptor implements HttpInterceptor {
   providers: [
     AppService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
-    AuthResolver
+    AuthResolver,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
