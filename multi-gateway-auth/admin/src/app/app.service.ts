@@ -6,7 +6,7 @@ export class AppService {
 
   authenticated = false;
   writer = false;
-  error = '';
+  error: any;
   user: Object = {name: ''};
 
   constructor(private http: HttpClient) {
