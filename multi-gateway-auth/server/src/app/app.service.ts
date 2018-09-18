@@ -17,26 +17,38 @@ export class AppService {
     ) : new HttpHeaders();
   }
 
+  initializeApp(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.http.get('user').subscribe(data => {
+          this.setRole(data);
+          if (this.authenticated && this.admin) {
+            window.location.href = "http://localhost:8080/admin/";
+          } else if (this.authenticated) {
+            window.location.href = "http://localhost:8080/ui/";
+          }
+          else {
+            resolve();
+          }
+        },
+        err => {
+          resolve();
+        }
+      );
+    });
+  }
+
+  setRole(data) {
+    this.authenticated = data && data['name'];
+    this.user = this.authenticated ? data['name'] : '';
+    this.admin = this.authenticated && data['roles'] && data['roles'].indexOf('ROLE_ADMIN') > -1;
+  }
+
   authenticate(credentials, callback) {
     this.http.get('user', {headers: AppService.setHeaders(credentials)}).subscribe(data => {
-      this.authenticated = data && data['name'];
-      this.user = this.authenticated ? data['name'] : '';
-      this.admin = this.authenticated && data['roles'] && data['roles'].indexOf('ROLE_ADMIN') > -1;
-
+      this.setRole(data);
       if (callback) {
         callback(data)
       }
     });
-  }
-
-  logout(callback) {
-    this.http.post('logout', {}).subscribe(() => {
-      this.authenticated = false;
-      this.admin = false;
-      // if (callback) {callback()};
-    }, () => {
-    }, () => {
-      callback()
-    })
   }
 }

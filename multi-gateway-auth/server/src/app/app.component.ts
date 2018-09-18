@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
 import {AppService} from "./app.service";
 
 @Component({
@@ -13,8 +12,7 @@ export class AppComponent {
   admin = false;
   credentials = {username: "", password: ""};
 
-  constructor(private app: AppService, private router: Router) {
-    this.login();
+  constructor(private app: AppService) {
   }
 
   login() {
@@ -29,9 +27,4 @@ export class AppComponent {
     });
   }
 
-  logout() {
-    return this.app.logout(() => {
-      this.authenticated = this.app.authenticated;
-    });
-  }
 }
