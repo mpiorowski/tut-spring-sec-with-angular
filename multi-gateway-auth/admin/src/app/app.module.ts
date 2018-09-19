@@ -21,11 +21,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {path: 'read', component: ReadComponent},
-      {path: 'write', component: WriteComponent}
+      {path: 'write', component: WriteComponent},
+      {path: 'changes', component: ChangesComponent},
     ]
   },
   {path: 'unauthenticated', component: UnauthenticatedComponent},
-  {path: 'changes', component: ChangesComponent},
 ];
 
 @Injectable()
