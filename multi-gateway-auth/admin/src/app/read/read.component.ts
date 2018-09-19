@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {AppService} from "../app.service";
 
 @Component({
   selector: 'app-read',
@@ -9,9 +10,9 @@ import {HttpClient} from "@angular/common/http";
 export class ReadComponent implements OnInit {
 
   greeting = {};
-  data: any;
+  loading = true;
 
-  constructor(private http: HttpClient) {
+  constructor(private app: AppService, private http: HttpClient) {
     this.getGreeting();
   }
 
@@ -19,7 +20,12 @@ export class ReadComponent implements OnInit {
   }
 
   getGreeting() {
-    this.http.get('/resource').subscribe(data => this.greeting = data);
+    this.http.get('/resource').subscribe(data => {
+      this.greeting = data;
+    }, () => {
+    }, () => {
+      this.loading = false;
+    });
   }
 
 

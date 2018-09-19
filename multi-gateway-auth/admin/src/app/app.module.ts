@@ -11,7 +11,6 @@ import {ChangesComponent} from './changes/changes.component';
 import {UnauthenticatedComponent} from './unauthenticated/unauthenticated.component';
 import {AppService} from "./app.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {AuthResolver} from "./resolver/authResolver";
 import {HomeComponent} from './home/home.component';
 import {AuthGuard} from "./guard/auth.guard";
 
@@ -58,7 +57,6 @@ export class XhrInterceptor implements HttpInterceptor {
   providers: [
     AppService,
     {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true},
-    AuthResolver,
     AuthGuard
   ],
   bootstrap: [AppComponent]

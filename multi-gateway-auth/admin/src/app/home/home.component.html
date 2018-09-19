@@ -1,2 +1,9 @@
-<p>HOME</p>
-<router-outlet></router-outlet>
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+<div class="container" *ngIf="!loading">
+  <h1>HOME</h1>
+  <main [@fadeAnimation]="getRouterOutletState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </main>
+</div>

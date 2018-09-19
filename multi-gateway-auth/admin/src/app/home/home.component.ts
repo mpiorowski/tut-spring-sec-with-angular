@@ -1,21 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {fadeAnimation} from "../animation/animation.fade";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [fadeAnimation]
 })
 export class HomeComponent implements OnInit {
 
-  data: any;
+  loading = true;
 
-  constructor(private router: ActivatedRoute) {
+  constructor() {
   }
 
   ngOnInit() {
-    // this.data = this.router.snapshot.data;
-    // console.log(this.data);
+    this.loading = false;
+  }
+
+  getRouterOutletState(outlet) {
+    return outlet.isActivated ? outlet.activatedRoute : '';
   }
 
 }

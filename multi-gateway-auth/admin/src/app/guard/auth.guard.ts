@@ -12,11 +12,27 @@ export class AuthGuard implements CanActivate {
   }
 
   error: any;
+  authenticated = false;
+  writer = false;
+  admin = false;
+  user: Object = {name: ''};
 
   authenticate(): Observable<boolean> {
     return this.http.get('user').pipe(
-      map(() => {
-        return true;
+      map(user => {
+        this.authenticated = user && user['name'];
+        this.writer = this.authenticated && user['roles'] && user['roles'].indexOf('ROLE_WRITER') > 0;
+        this.admin = this.authenticated && user['roles'] && user['roles'].indexOf('ROLE_ADMIN') > -1;
+        this.user = user;
+
+        this.app.saveRole(this.authenticated, this.writer, this.admin, this.user);
+
+        if (this.authenticated && this.admin) {
+          return true;
+        } else {
+          this.router.navigate(['/unauthenticated']);
+          return false;
+        }
       }),
       catchError(error => this.handleServerError(error))
     );
@@ -24,7 +40,15 @@ export class AuthGuard implements CanActivate {
 
   handleServerError(error: any) {
     console.log(error.error || error.json() || error);
-    this.error = error;
+    if (error.status === 0) {
+      this.error = 'No connection. Verify application is running.';
+    } else if (error.status === 401) {
+      this.error = 'Unauthorized.';
+    } else if (error.status === 403) {
+      this.error = 'Forbidden.';
+    } else {
+      this.error = 'Unknown.';
+    }
     this.router.navigate(['/unauthenticated']);
     return of(false);
   }

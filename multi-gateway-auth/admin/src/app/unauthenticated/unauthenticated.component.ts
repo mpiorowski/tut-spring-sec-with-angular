@@ -19,7 +19,7 @@ export class UnauthenticatedComponent implements OnInit {
     else if (this.app.error) {
       this.error = this.app.error;
     }
-    this.app.authenticated ? this.router.navigate(['/']) : {};
+    (this.app.authenticated && this.app.admin) ? this.router.navigate(['/']) : {};
   }
 
   ngOnInit() {

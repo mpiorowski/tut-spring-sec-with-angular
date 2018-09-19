@@ -1,5 +1,10 @@
-<h1>Greeting Reader!</h1>
-<div>
-  <p>The ID is {{greeting.id}}</p>
-  <p>The content is {{greeting.content}}</p>
+<div class="text-center">
+  <p class="lead" *ngIf="loading">Loading...</p>
+</div>
+<div *ngIf="!loading">
+  <h1>Greeting Reader!</h1>
+  <div>
+    <p>The ID is {{greeting.id}}</p>
+    <p>The content is {{greeting.content}}</p>
+  </div>
 </div>
