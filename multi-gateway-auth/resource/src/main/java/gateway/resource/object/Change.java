@@ -29,11 +29,11 @@ public class Change {
     this.user = user;
   }
 
-  public String getChange() {
+  public String getMessage() {
     return message;
   }
 
-  public void setChange(String message) {
+  public void setMessage(String message) {
     this.message = message;
   }
 }
