@@ -42,9 +42,8 @@ export class AppService {
   }
 
   logout() {
-    this.http.post('logout', {}).subscribe(() => {
+    this.http.post('/logout', {}).subscribe(() => {
         this.authenticated = false;
-        this.admin = false;
         window.location.href = "/";
       }
     )

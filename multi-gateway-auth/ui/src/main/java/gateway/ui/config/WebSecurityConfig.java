@@ -11,8 +11,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
-//        .httpBasic()
-//        .and()
       .authorizeRequests()
       .anyRequest()
       .authenticated()

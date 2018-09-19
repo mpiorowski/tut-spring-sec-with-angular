@@ -14,9 +14,9 @@ export class AppComponent {
   user: {};
 
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
-    this.app.authenticate(response => {
-      this.user = response;
-    })
+    // this.app.authenticate(response => {
+    //   this.user = response;
+    // })
   }
 
   logout() {

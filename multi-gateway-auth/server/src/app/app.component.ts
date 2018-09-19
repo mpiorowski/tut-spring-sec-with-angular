@@ -22,7 +22,7 @@ export class AppComponent {
       if (this.authenticated && this.admin) {
         window.location.href = "http://localhost:8080/admin/";
       } else if (this.authenticated) {
-        window.location.href = "http://localhost:8080/admin/";
+        window.location.href = "http://localhost:8080/ui/";
       }
     });
   }
