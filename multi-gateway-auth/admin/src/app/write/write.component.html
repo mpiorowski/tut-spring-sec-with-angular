@@ -1,0 +1,10 @@
+<h1>Hello Writer!</h1>
+
+<form (submit)="update()">
+  <p>The ID is {{greeting.id}}</p>
+  <div class="form-group">
+    <label for="content">Content: </label>
+    <input type="text" class="form-control" id="content" name="content" [(ngModel)]="greeting.content">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>

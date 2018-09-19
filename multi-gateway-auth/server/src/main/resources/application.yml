@@ -1,0 +1,33 @@
+zuul:
+  routes:
+    ui:
+      path: /ui/*
+      url: http://localhost:8081
+      #      stripPrefix: false
+      sensitive-headers:
+    admin:
+      path: /admin/**
+      url: http://localhost:8082
+      sensitive-headers:
+    resource:
+      path: /resource/**
+      url: http://localhost:9000
+      sensitive-headers:
+
+
+spring:
+  security:
+    user:
+      password: pass
+  session:
+    store-type: redis
+
+
+management:
+  endpoint:
+    httptrace:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: httptrace

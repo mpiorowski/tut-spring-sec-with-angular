@@ -1,0 +1,16 @@
+server:
+  port: 8082
+  address: localhost
+
+management:
+  endpoint:
+    httptrace:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: httptrace
+
+spring:
+  session:
+    store-type: redis

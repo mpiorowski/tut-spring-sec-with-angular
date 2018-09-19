@@ -1,0 +1,23 @@
+spring:
+  security:
+    user:
+      password: pass
+zuul:
+  routes:
+    resource:
+      path: /resource/**
+      url: http://127.0.0.1:9000
+    user:
+      path: /user/**
+      url: http://localhost:9999/uaa/user
+  sensitive-headers:
+
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:9999/uaa/oauth/token
+      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
+      client-id: acme
+      client-secret: acmesecret
+    resource:
+      user-info-uri: http://localhost:9999/uaa/user
