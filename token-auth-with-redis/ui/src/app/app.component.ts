@@ -7,9 +7,11 @@ import 'rxjs/add/operator/finally';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  title = 'app';
+
   constructor(private app: AppService, private http: HttpClient, private router: Router) {
     this.app.authenticate(undefined, undefined);
   }
