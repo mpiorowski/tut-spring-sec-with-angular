@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class AppService {
@@ -23,7 +23,11 @@ export class AppService {
   logout() {
     this.http.post('logout', {}).finally(() => {
       this.authenticated = false;
+      this.http.post('http://localhost:9999/uaa/logout', {}, {withCredentials: true})
+        .subscribe(() => {
+          console.log('Logged out');
+        });
     }).subscribe();
-  }
+  };
 
 }

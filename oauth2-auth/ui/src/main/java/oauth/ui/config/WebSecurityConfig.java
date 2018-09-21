@@ -12,18 +12,21 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.logout()
-        .logoutSuccessUrl("/")
+  public void configure(HttpSecurity http) throws Exception {
+    // @formatter:off
+    http.httpBasic()
+      .disable()
+      .logout()
         .and()
         .authorizeRequests()
-        .antMatchers("/index.html", "/app.html", "/", "/home")
+      .antMatchers("/index.html", "/", "/login")
         .permitAll()
         .anyRequest()
         .authenticated()
         .and()
         .csrf()
         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    // @formatter:on
   }
 
   @Override

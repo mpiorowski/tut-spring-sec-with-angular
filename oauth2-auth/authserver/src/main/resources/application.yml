@@ -1,11 +1,3 @@
-security:
-  oauth2:
-    client:
-      client-id: acme
-      client-secret: acmesecret
-      authorized-grant-types: authorization_code, refresh_token
-      scope: openid
-
 server:
   port: 9999
   servlet:
