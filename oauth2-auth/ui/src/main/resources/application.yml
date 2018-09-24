@@ -1,7 +1,8 @@
 spring:
   security:
     user:
-      password: pass
+      password: passs
+
 zuul:
   routes:
     resource:
