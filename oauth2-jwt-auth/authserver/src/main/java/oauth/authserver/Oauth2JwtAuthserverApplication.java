@@ -8,8 +8,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @SpringBootApplication
 @EnableAuthorizationServer
 @EnableResourceServer
-public class Oauth2AuthserverApplication {
+public class Oauth2JwtAuthserverApplication {
   public static void main(String[] args) {
-    SpringApplication.run(Oauth2AuthserverApplication.class, args);
+    SpringApplication.run(Oauth2JwtAuthserverApplication.class, args);
   }
 }

@@ -7,8 +7,8 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 @SpringBootApplication
 @EnableZuulProxy
-public class Oauth2UiApp {
+public class Oauth2JwtUiApp {
   public static void main(String[] args) {
-    SpringApplication.run(Oauth2UiApp.class);
+    SpringApplication.run(Oauth2JwtUiApp.class);
   }
 }
