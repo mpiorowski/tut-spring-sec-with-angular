@@ -14,12 +14,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(HttpSecurity http) throws Exception {
     // @formatter:off
-    http.httpBasic()
-      .disable()
-      .logout()
+    http
+        .logout()
         .and()
         .authorizeRequests()
-      .antMatchers("/index.html", "/", "/login")
+        .antMatchers("/index.html", "/", "/login")
         .permitAll()
         .anyRequest()
         .authenticated()

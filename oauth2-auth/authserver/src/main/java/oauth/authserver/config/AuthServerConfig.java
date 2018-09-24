@@ -6,13 +6,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.view.RedirectView;
@@ -24,11 +29,23 @@ import java.security.KeyPair;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
+public class AuthServerConfig implements AuthorizationServerConfigurer {
 
   @Autowired
   @Qualifier("authenticationManagerBean")
   private AuthenticationManager authenticationManager;
+
+  @Bean
+  public UserDetailsService userDetailsService() {
+    return new InMemoryUserDetailsManager(
+
+        User.withDefaultPasswordEncoder()
+            .username("user")
+            .password("user")
+            .authorities("ROLE_USER")
+            .build()
+    );
+  }
 
   @Bean
   public JwtAccessTokenConverter jwtAccessTokenConverter() {
@@ -55,6 +72,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
     endpoints
         .authenticationManager(authenticationManager)
+        .userDetailsService(userDetailsService())
         .accessTokenConverter(jwtAccessTokenConverter());
     endpoints.addInterceptor(
         new HandlerInterceptorAdapter() {
@@ -81,6 +99,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
   @Override
   public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-    oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+    oauthServer
+        .tokenKeyAccess("permitAll()")
+        .checkTokenAccess("isAuthenticated()")
+        .passwordEncoder(NoOpPasswordEncoder.getInstance());
   }
 }

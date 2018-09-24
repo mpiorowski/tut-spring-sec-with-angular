@@ -9,8 +9,6 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@SessionAttributes("authorizationRequest")
-@EnableAuthorizationServer
 public class WebMvcConfig implements WebMvcConfigurer {
 
   @Override

@@ -2,8 +2,3 @@ server:
   port: 9999
   servlet:
     context-path: /uaa
-
-spring:
-  security:
-    user:
-      password: pass
