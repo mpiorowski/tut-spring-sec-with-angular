@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ssa.oauth2.auth</groupId>
-    <artifactId>oauth2-root</artifactId>
+    <groupId>ssa.oauth2.jwt.auth</groupId>
+    <artifactId>oauth2-jwt-root</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>oauth-root</name>
+    <name>oauth-jwt-root</name>
 
     <modules>
         <module>authserver</module>
