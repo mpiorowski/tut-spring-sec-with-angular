@@ -22,3 +22,13 @@ security:
       client-secret: acmesecret
     resource:
       user-info-uri: http://localhost:9999/uaa/user
+
+management:
+  endpoint:
+    httptrace:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: httptrace
+
