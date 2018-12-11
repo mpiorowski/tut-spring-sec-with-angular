@@ -1,4 +1,4 @@
-# spring.security.with.angular
+# tut-spring-sec-with-angular
 based on:  
 https://spring.io/guides/tutorials/spring-security-and-angular-js/
 
