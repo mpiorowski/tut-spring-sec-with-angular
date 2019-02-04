@@ -1,4 +1,4 @@
-## Sample application with spring and angular
+## Exemplary application with spring and angular
 
 Application focused on authorization using spring security with angular. Based on two tutorials:
   
