@@ -1,6 +1,6 @@
 ## Exemplary application with spring and angular
 
-Application focused on authorization using spring security with angular. Based on two tutorials:
+Application focused on authorization using spring security with angular js. Based on two tutorials:
   
 * https://spring.io/guides/tutorials/spring-security-and-angular-js/
 * https://www.tutorialspoint.com/spring_boot/spring_boot_oauth2_with_jwt.htm
